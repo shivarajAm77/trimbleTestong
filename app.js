@@ -53,6 +53,18 @@ http.createServer(function (req, res) {
                 res.end();
             }
         });
+        else if (url === "/V.png") {
+        fs.readFile("V.png", function (err, pgres) {
+            if (err) {
+                res.writeHead(404, { "Content-Type": "text/plain" });
+                res.write("V.PNG NOT FOUND");
+                res.end();
+            } else {
+                res.writeHead(200, { "Content-Type": "image/png" });
+                res.write(data);
+                res.end();
+        }
+        });
     }
 
     const path = require("path");
