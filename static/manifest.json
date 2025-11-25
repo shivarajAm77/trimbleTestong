@@ -6,7 +6,5 @@
     "version": "1.0.0",
     "url": "https://trimbletestong-1.onrender.com/index.html",
     "icon": "https://trimbletestong-1.onrender.com/V.png",
-    "enabled": true,
-    "scope": "project",
-     "configCommand": "do_config"
+    "enabled": true
 }
