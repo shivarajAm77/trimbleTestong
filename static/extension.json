@@ -3,8 +3,8 @@
     "title": "Virtuele Redirect Extension",
     "version": "1.0.0",
     "description": "Redirect to Virtuele Dev",
-    "entry": "https://github.com/shivarajAm77/trimbleTestong/index.html",
-    "icon": "https://github.com/shivarajAm77/trimbleTestong/V.png"
+    "entry": "https://trimbletestong-1.onrender.com/index.html",
+    "icon": "https://trimbletestong-1.onrender.com/V.png"
     "enabled": true,
     "scope": "project",
     "configCommand": "",
