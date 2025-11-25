@@ -41,8 +41,8 @@ http.createServer(function (req, res) {
                 res.end();
             }
         });
-    } else if (url === "/extension.json") {
-        fs.readFile("static/extension.json", function (err, pgres) {
+    } else if (url === "/manifest.json") {
+        fs.readFile("static/manifest.json", function (err, pgres) {
             if (err) {
                 res.writeHead(404, { 'Content-Type': 'text/plain' });
                 res.write("EXTENSION.JSON NOT FOUND");
