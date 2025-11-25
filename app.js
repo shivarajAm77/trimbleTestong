@@ -61,7 +61,7 @@ http.createServer(function (req, res) {
             res.end();
         } else {
             res.writeHead(200, { "Content-Type": "image/png" });
-            res.write(data);
+            res.write(pgres);
             res.end();
         }
         });
