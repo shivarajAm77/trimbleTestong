@@ -1,22 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<script src="https://connect.trimble.com/tcui.min.js"></script>
-
 <head>
-    <meta charset="UTF-8">
-    <title>Virtuele site Extension</title>
-    <link rel="stylesheet" href="static/style2.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Trimble Project Extension Example</title>
 </head>
-
 <body>
-
-    <div class="container">
-        <h1>Trimble Connect Extension</h1>
-        <button id="redirectButton">Virtuele</button>
-    </div>
-
-    <script src="static/main.js"></script>
-
+<div id="root">
+<h2>Trimble Project Extension Example</h2>
+<div id="status">Initializing...</div>
+<button id="btnCallHost">Call Host API: getActiveProject()</button>
+<pre id="output"></pre>
+</div>
+<script type="module" src="./index.js"></script>
 </body>
-
 </html>
