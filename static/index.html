@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<script src="https://connect.trimble.com/tcui.min.js"></script>
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Virtuele site Extension</title>
-    <link rel="stylesheet" href="static/style2.css">
+    <meta charset="UTF-8" />
+    <title>Virtuele Redirect Extension</title>
+
+    <!-- Trimble API -->
+    <script src="https://components.connect.trimble.com/trimble-connect-project-workspace-api/v1/trimble-connect-project-workspace-api.js"></script>
+    <script src="https://connect.trimble.com/extension-sdk.js"></script>
 </head>
-
 <body>
+    <h2>Loading Redirect Extension...</h2>
 
-    <div class="container">
-        <h1>Trimble Connect Extension</h1>
-        <button id="redirectButton">Virtuele</button>
-    </div>
-
-    <script src="static/main.js"></script>
-
+    <script>
+        Extensions.register('virtuele-redirect-extension', async function (api) {
+            console.log("Extension loaded");
+            window.location.href = "https://clbdev.virtuele.us";
+        });
+    </script>
 </body>
-
 </html>
