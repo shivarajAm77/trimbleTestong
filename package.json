@@ -8,10 +8,16 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shivarajAm77/trimbleTestong.git"
-  },
+  "scripts": {
+"start": "parcel src/index.html --open",
+"build": "parcel build src/index.html --public-url ./"
+},
+"dependencies": {
+"trimble-connect-project-workspace-api": "^0.1.7"
+},
+"devDependencies": {
+"parcel": "^2.9.3"
+}
   "keywords": [],
   "author": "",
   "license": "ISC",
