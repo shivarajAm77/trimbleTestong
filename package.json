@@ -10,7 +10,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "trimble-connect-project-workspace-api": "^0.1.7"
+    "trimble-connect-project-workspace-api": "^0.1.5"
   },
   "devDependencies": {
     "parcel": "^2.9.3",
