@@ -1,8 +1,8 @@
 
 {
-  "icon": "https://trimbletestong-1.onrender.com/V.png",
+  "icon": "https://trimbletestong-2.onrender.com//V.png",
   "title": "React example",
-  "url": "https://trimbletestong-1.onrender.com/index.html",
+  "url": "https://trimbletestong-2.onrender.com/index.html",
   "description": "Test react extension",
   "configCommand": "do_config",
   "enabled": true
