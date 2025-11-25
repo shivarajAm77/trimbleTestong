@@ -1,15 +1,11 @@
 {
     "id": "virtuele-redirect-extension",
     "title": "Virtuele Redirect Extension",
+    "description": "Extension to redirect users to virtule Development",
+    "type":"project",
     "version": "1.0.0",
-    "description": "Redirect to Virtuele Dev",
-    "entry": "https://trimbletestong-1.onrender.com/index.html",
+    "url": "https://trimbletestong-1.onrender.com/index.html",
     "icon": "https://trimbletestong-1.onrender.com/V.png"
     "enabled": true,
-    "scope": "project",
-    "configCommand": "",
-    "menu": {
-        "label": "Example Ext",
-        "order": 100
-    }
+    "scope": "project"
 }
