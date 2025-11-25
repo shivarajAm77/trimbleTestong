@@ -3,5 +3,13 @@
     "title": "Virtuele Redirect Extension",
     "version": "1.0.0",
     "description": "Redirect to Virtuele Dev",
-    "entry": "https://github.com/shivarajAm77/trimbleTestong/index.html"
+    "entry": "https://github.com/shivarajAm77/trimbleTestong/index.html",
+    "icon": "https://github.com/shivarajAm77/trimbleTestong/V.png"
+    "enabled": true,
+    "scope": "project",
+    "configCommand": "",
+    "menu": {
+        "label": "Example Ext",
+        "order": 100
+    }
 }
