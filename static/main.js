@@ -1,31 +1,50 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const button = document.getElementById('redirectButton');
+import * as Extensions from "trimble-connect-project-workspace-api";
 
-    button.addEventListener('click', () => {
-        // Open external link in a new tab
-        window.open('https://dev.virtuele.us', '_blank');
-    });
 
-    // Optional: If you want to integrate with Trimble Connect UI API
-    if (window.TC && TC.UI) {
-        TC.UI.addCustomButton({
-            id: 'redirectButton',
-            label: 'Go to Virtuele Development',
-            onClick: () => {
-                window.open('https://dev.virtuele.us', '_blank');
-            }
-        });
-    }
+const statusEl = document.getElementById('status');
+const outputEl = document.getElementById('output');
+const btn = document.getElementById('btnCallHost');
+
+
+async function init() {
+statusEl.textContent = 'Requesting API from host...';
+try {
+// getTC is exported and returns a Promise<TCExtensionAPI>
+const api = await Extensions.getTC();
+statusEl.textContent = 'Connected to Trimble Connect API';
+
+
+// Example: use Extension API to get the current project
+if (api.extension && api.extension.on) {
+// respond to extension messages from host
+api.extension.on('extension.command', (arg) => {
+appendOutput('extension.command received: ' + JSON.stringify(arg));
+});
+}
+
+
+btn.addEventListener('click', async () => {
+appendOutput('Calling host API: project.getActiveProject()');
+try {
+if (api.project && api.project.getActiveProject) {
+const proj = await api.project.getActiveProject();
+appendOutput(JSON.stringify(proj, null, 2));
+} else {
+appendOutput('project.getActiveProject not available on API');
+}
+} catch (err) {
+appendOutput('API call failed: ' + err);
+}
 });
 
-TC.ready(function () {
-    TC.UI.addCustomButton({
-        id: "virtueleButton",
-        label: "Go to Virtuele",
-        onClick: () => {
-            window.open("https://dev.virtuele.us", "_blank");
-        }
-    });
-});
+
+} catch (err) {
+statusEl.textContent = 'Failed to get API: ' + err;
+appendOutput(err.stack || String(err));
+}
+}
 
 
+function appendOutput(text) {
+outputEl.textContent = outputEl.textContent + '\n' + text;
+}
