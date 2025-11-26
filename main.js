@@ -25,22 +25,22 @@ async function initializeTrimbleConnect(){
         subMenus: [
             {
             title: "Authorization",
-            icon: "https://shivarajam77.github.io/trimble-extension/V.png",
+            icon: "https://shivarajam77.github.io/trimble-extension/Login.png",
             command: "submenu_1_clicked",
             },
             {
             title: "Sync Project",
-            icon: "https://shivarajam77.github.io/trimble-extension/V.png",
+            icon: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/projectspecification.svg",
             command: "submenu_2_clicked",
             },
             {
             title: "Sync Models",
-            icon: "https://shivarajam77.github.io/trimble-extension/V.png",
+            icon: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/modelcheck.svg",
             command: "submenu_3_clicked",
             },
             {
             title: "RFI Manager",
-            icon: "https://shivarajam77.github.io/trimble-extension/V.png",
+            icon: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/rfimanagement.svg",
             command: "submenu_4_clicked",
             },
         ],
