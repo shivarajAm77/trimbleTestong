@@ -1,0 +1,10 @@
+{
+    "id": "virtuele-redirect-extension",
+    "title": "Virtuele Redirect Extension",
+    "description": "Extension to redirect users to virtule Development",
+    "type":"project",
+    "version": "1.0.0",
+    "url": "https://shivarajam77.github.io/trimbleTestong/static/index.html",
+    "icon": "https://shivarajam77.github.io/trimbleTestong/V.png",
+    "enabled": true
+}
