@@ -20,12 +20,12 @@ async function initializeTrimbleConnect(){
 
     const mainMenuObject = {
         title: "Virtuele app",
-        icon: "https://shivarajam77.github.io/trimble-extension/V.png",
+        icon: "https://shivarajam77.github.io/trimbleTestong/V.png",
         command: "main_nav_menu_cliked",
         subMenus: [
             {
             title: "Authorization",
-            icon: "https://shivarajam77.github.io/trimble-extension/Login.png",
+            icon: "https://shivarajam77.github.io/trimbleTestong/Login.png",
             command: "submenu_1_clicked",
             },
             {
