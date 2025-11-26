@@ -25,7 +25,7 @@ async function initializeTrimbleConnect(){
         subMenus: [
             {
             title: "Authorization",
-            icon: "https://shivarajam77.github.io/trimbleTestong/Login.png",
+            icon: "https://shivarajam77.github.io/trimbleTestong/Key.png",
             command: "submenu_1_clicked",
             },
             {
