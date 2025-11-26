@@ -51,7 +51,73 @@ async function initializeTrimbleConnect(){
     // Updating the active submenu.
     workSpaceAPI.ui.setActiveMenuItem("submenu_2_clicked");
 }
+document.getElementById("contentFrame").src = "https://dev.virtuele.us";
+api.extension.onCommand((cmd) => {
 
+    const frame = document.getElementById("contentFrame");
+
+    switch(cmd) {
+
+        case "submenu_1_clicked":
+            frame.src = "https://dev.virtuele.us/auth";
+            break;
+
+        case "submenu_2_clicked":
+            frame.src = "https://dev.virtuele.us/project-sync";
+            break;
+
+        case "submenu_3_clicked":
+            frame.src = "https://dev.virtuele.us/model-sync";
+            break;
+
+        case "submenu_4_clicked":
+            frame.src = "https://dev.virtuele.us/rfi";
+            break;
+
+        case "main_nav_menu_clicked":
+            frame.src = "https://dev.virtuele.us/home";
+            break;
+
+        default:
+            console.log("Unknown command:", cmd);
+    }
+
+});
+
+await api.ui.setMenu(mainMenuObject);
+(async () => {
+
+    const api = await Extensions.connect(window.parent, () => {}, 30000);
+
+    await api.ui.setMenu(mainMenuObject);
+
+    api.extension.onCommand((cmd) => {
+        const frame = document.getElementById("contentFrame");
+
+        switch(cmd) {
+            case "submenu_1_clicked":
+                frame.src = "https://dev.virtuele.us/auth";
+                break;
+
+            case "submenu_2_clicked":
+                frame.src = "https://dev.virtuele.us/project-sync";
+                break;
+
+            case "submenu_3_clicked":
+                frame.src = "https://dev.virtuele.us/model-sync";
+                break;
+
+            case "submenu_4_clicked":
+                frame.src = "https://dev.virtuele.us/rfi";
+                break;
+
+            case "main_nav_menu_clicked":
+                frame.src = "https://dev.virtuele.us/home";
+                break;
+        }
+    });
+
+})();
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById('redirectButton');
 
