@@ -103,7 +103,7 @@ function navigateByCommand(cmd) {
             frame.src = `https://www.w3schools.com`;
             break;
         case "submenu_2_clicked":
-            frame.src = `${DEV_BASE}/project-sync`;
+            frame.src = `https://www.w3schools.com`;
             break;
         case "submenu_3_clicked":
             frame.src = `${DEV_BASE}/model-sync`;
@@ -112,7 +112,7 @@ function navigateByCommand(cmd) {
             frame.src = `${DEV_BASE}/rfi`;
             break;
         case "main_nav_menu_clicked":
-            frame.src = `${DEV_BASE}/home`;
+            frame.src = `https://www.w3schools.com`;
             break;
         default:
             console.warn("Unknown command:", cmd);
