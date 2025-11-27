@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Virtuele Redirect Extension</title>
+
+  <!-- Trimble Workspace API (CDN) -->
+  <script src="https://components.connect.trimble.com/trimble-connect-project-workspace-api/v1/trimble-connect-project-workspace-api.js"></script>
+  <!-- Note: extension-sdk.js is not required for Extensions.connect usage -->
+  <style>
+    body { margin:0; font-family: Arial, Helvetica, sans-serif; height:100vh; display:flex; flex-direction:column; }
+    header { padding:10px; background:#f5f5f5; border-bottom:1px solid #ddd; }
+    #contentFrame { flex:1; width:100%; border:0; }
+    #log { padding:8px; font-size:13px; color:#333; background:#fff; border-top:1px solid #eee; max-height:120px; overflow:auto; }
+    button { padding:6px 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Virtuele Redirect Extension</strong>
+    <button id="openExternal" style="margin-left:12px">Open External (new tab)</button>
+  </header>
+
+  <!-- iframe where external pages will load -->
+  <iframe id="contentFrame" src="about:blank" title="Virtuele Content"></iframe>
+
+  <pre id="log">Log: starting...</pre>
+
+  <script>
+  (function () {
+    const logEl = document.getElementById('log');
+    const frame = document.getElementById('contentFrame');
+    const openExternal = document.getElementById('openExternal');
+
+    function log(...args) {
+      console.log(...args);
+      logEl.textContent += '\n' + args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' ');
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    // Menu object you posted (id added)
+    const mainMenuObject = {
+      id: "virtuele-main-menu",
+      title: "Virtuele app",
+      icon: "https://shivarajam77.github.io/trimbleTestong/V.png",
+      command: "main_nav_menu_clicked",
+      type: "ExtensionMainMenu",
+      subMenus: [
+        { title: "Authorization", icon: "https://shivarajam77.github.io/trimbleTestong/key-icon.svg", command: "submenu_1_clicked" },
+        { title: "Sync Project",   icon: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/projectspecification.svg", command: "submenu_2_clicked" },
+        { title: "Sync Models",    icon: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/modelcheck.svg", command: "submenu_3_clicked" },
+        { title: "RFI Manager",    icon: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/rfimanagement.svg", command: "submenu_4_clicked" }
+      ]
+    };
+
+    // Map commands -> URLs (iframe targets)
+    const commandToUrl = {
+      submenu_1_clicked: "https://dev.virtuele.us/auth",
+      submenu_2_clicked: "https://dev.virtuele.us/project-sync",
+      submenu_3_clicked: "https://dev.virtuele.us/model-sync",
+      submenu_4_clicked: "https://dev.virtuele.us/rfi",
+      main_nav_menu_clicked: "https://dev.virtuele.us/home"
+    };
+
+    // Wait DOM ready
+    document.addEventListener('DOMContentLoaded', async () => {
+      log('DOM ready. Initializing Trimble connection...');
+
+      // For testing locally (outside Trimble) we can optionally show a friendly message.
+      if (!window.Extensions || typeof Extensions.connect !== 'function') {
+        log('ERROR: Extensions.connect() not available. Make sure trimble-connect-project-workspace-api script loaded and you are running inside Trimble Connect (iframe).');
+        // You can still use the iframe button to open pages in a new tab for local debugging:
+        openExternal.addEventListener('click', () => {
+          window.open('https://dev.virtuele.us', '_blank');
+        });
+        return;
+      }
+
+      let api;
+      try {
+        api = await Extensions.connect(
+          window.parent,
+          (event, args) => {
+            // general event callback - log everything
+            log('EVENT', event, args);
+          },
+          30000 // 30s timeout
+        );
+        log('Extensions.connect() succeeded:', !!api);
+      } catch (err) {
+        log('Extensions.connect() failed:', err && err.message ? err.message : err);
+        return;
+      }
+
+      // Register the menu so Trimble shows the extension in the left panel
+      try {
+        await api.ui.setMenu(mainMenuObject);
+        log('Menu set:', mainMenuObject.title);
+      } catch (err) {
+        log('ui.setMenu failed:', err && err.message ? err.message : err);
+      }
+
+      // Optionally set which submenu should be active initially
+      try {
+        await api.ui.setActiveMenuItem('submenu_2_clicked');
+        log('Active menu item set to submenu_2_clicked');
+      } catch (err) {
+        log('ui.setActiveMenuItem failed (probably not critical):', err && err.message ? err.message : err);
+      }
+
+      // Handle commands coming from Trimble UI (menu clicks)
+      try {
+        api.extension.onCommand((cmd) => {
+          log('Received command:', cmd);
+          const url = commandToUrl[cmd];
+          if (url) {
+            // load inside iframe (no redirect)
+            frame.src = url;
+            log('Iframe src set to', url);
+          } else {
+            log('Unknown command:', cmd);
+          }
+        });
+
+        // Also handle extension.command events via API callback if needed (already logged above)
+      } catch (err) {
+        log('Failed to register command handler:', err);
+      }
+
+      // Wire the internal "Open external" button (opens in new tab)
+      openExternal.addEventListener('click', () => {
+        window.open('https://dev.virtuele.us', '_blank');
+      });
+
+      // Optionally set an initial frame URL if you want content on first open
+      // frame.src = commandToUrl['submenu_2_clicked'];
+    });
+  })();
+  </script>
+</body>
+</html>
