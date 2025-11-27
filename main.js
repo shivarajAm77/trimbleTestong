@@ -63,6 +63,41 @@ document.addEventListener('DOMContentLoaded', () => {
         // window.open('https://dev.virtuele.us', '_blank');
     });
 
+      // Load default landing page
+    document.getElementById("contentFrame").src = "https://dev.virtuele.us/home";
+
+    // Register click handler
+    workSpaceAPI.extension.onCommand((cmd) => {
+        console.log("Trimble command:", cmd);
+        const frame = document.getElementById("contentFrame");
+
+        switch (cmd) {
+            case "submenu_1_clicked":
+                frame.src = "https://dev.virtuele.us/auth";
+                break;
+
+            case "submenu_2_clicked":
+                frame.src = "https://dev.virtuele.us/project-sync";
+                break;
+
+            case "submenu_3_clicked":
+                frame.src = "https://dev.virtuele.us/model-sync";
+                break;
+
+            case "submenu_4_clicked":
+                frame.src = "https://dev.virtuele.us/rfi";
+                break;
+
+            case "main_nav_menu_clicked":
+                frame.src = "https://dev.virtuele.us/home";
+                break;
+
+            default:
+                console.log("Unknown command:", cmd);
+        }
+    });
+}
+
     // Optional: If you want to integrate with Trimble Connect UI API
     // if (window.TC && TC.UI) {
     //     TC.UI.addCustomButton({
