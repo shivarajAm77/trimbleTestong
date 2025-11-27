@@ -100,7 +100,7 @@ function navigateByCommand(cmd) {
 
     switch (cmd) {
         case "submenu_1_clicked":
-            frame.src = `${DEV_BASE}/auth`;
+            frame.src = `https://www.w3schools.com`;
             break;
         case "submenu_2_clicked":
             frame.src = `${DEV_BASE}/project-sync`;
