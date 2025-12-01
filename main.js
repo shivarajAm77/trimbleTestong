@@ -12,7 +12,7 @@ const ICON_BASE = {
     rfi: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/rfimanagement.svg"
 };
 
-const DEV_BASE = "https://www.w3schools.com";
+const DEV_BASE = "https://www.google.com";
 
 async function initializeTrimbleConnect() {
     try {
