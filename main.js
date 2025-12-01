@@ -12,7 +12,7 @@ const ICON_BASE = {
     rfi: "https://dvlc9qcftewvt.cloudfront.net/virtuele/images/directory/rfimanagement.svg"
 };
 
-const DEV_BASE = "https://dev.virtuele.us";
+const DEV_BASE = "https://www.w3schools.com";
 
 async function initializeTrimbleConnect() {
     try {
@@ -103,7 +103,7 @@ function navigateByCommand(cmd) {
             frame.src = `https://www.w3schools.com`;
             break;
         case "submenu_2_clicked":
-            frame.src = `https://www.w3schools.com`;
+            frame.src = `https://www.google.com`;
             break;
         case "submenu_3_clicked":
             frame.src = `${DEV_BASE}/model-sync`;
